@@ -4,8 +4,15 @@ import Navbar from '../components/Navbar'
 import { useFonts } from 'expo-font'
 import ProductCard from '../components/ProductCard'
 import CategoryContainer from '../components/CategoryContainer'
+import { useNavigation } from '@react-navigation/native'
+
+//Import producto
+import Producto from './Producto'
 
 const Home = () => {
+
+    //Navigation
+    const Navigation = useNavigation()
 
     //Fuentes Personalizadas
     const [fontsLoaded] = useFonts({
@@ -25,6 +32,7 @@ const Home = () => {
 
                 <View style={styles.contenedorPrincipal}>
                     <View style={styles.contenedorProductos}>
+                        
                         <ProductCard nombre='Cuadro de Caballos' precio={300} imageSource={require('../assets/producto.jpg')}></ProductCard>
                         <ProductCard nombre='Pintura Abstracta' precio={1500} imageSource={require('../assets/producto2.jpeg')}></ProductCard>
                         <ProductCard nombre='Pintura Marilyn' precio={1000} imageSource={require('../assets/producto3.jpg')}></ProductCard>

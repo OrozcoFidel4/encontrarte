@@ -11,12 +11,14 @@ import PerfilUsuario from './pages/PerfilUsuario';
 import Categorias from './pages/Categorias';
 import Creadores from './pages/Creadores';
 import Carrito from './pages/Carrito';
+import Producto from './pages/Producto';
 
 //Iconos 
 import Entypo from '@expo/vector-icons/Entypo';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+
 
 
 const Tab = createBottomTabNavigator();
@@ -89,7 +91,7 @@ const Stack = createStackNavigator();
 function MyStack() {
     return(
         <Stack.Navigator
-            initialRouteName="Login"
+            initialRouteName="HomeTab"
         >
             <Stack.Screen
                 name="Login"
@@ -120,6 +122,15 @@ function MyStack() {
                 component={Carrito}
                 options={{
                     headerShown: false
+                    
+                }}
+            />
+
+            <Stack.Screen
+                name="Producto"
+                component={Producto}
+                options={{
+                    headerShown: true
                     
                 }}
             />

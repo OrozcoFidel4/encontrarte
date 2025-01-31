@@ -1,11 +1,25 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import { useFonts } from 'expo-font';
+import { useNavigation } from '@react-navigation/native';
+import { useEffect } from 'react';
 
 import AntDesign from '@expo/vector-icons/AntDesign';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
+
+
 const ProductCard = ({nombre, precio, imageSource}) => {
+
+    //Navigation
+    const Navigation = useNavigation()
+
+    //Funcion con useeffect para navegar
+    const handlePress = () => {
+        Navigation.navigate('Producto');
+    };
+    
+
 
     //Fuentes Personalizadas
     const [fontsLoaded] = useFonts({
@@ -15,7 +29,7 @@ const ProductCard = ({nombre, precio, imageSource}) => {
     });
 
     return (
-        <TouchableOpacity style={styles.cardbody}>
+        <TouchableOpacity style={styles.cardbody} onPress={handlePress}>
             
             {imageSource && (<Image source={imageSource} style={styles.image}/>)}
 

@@ -1,7 +1,10 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, KeyboardAvoidingView, Platform } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, KeyboardAvoidingView, Platform, Alert } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { useFonts } from 'expo-font'
+
+//Icono
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 //Form
 import { useForm, Controller } from 'react-hook-form';
@@ -16,7 +19,6 @@ const validationSchema = yup.object().shape({
     .required('El correo electrónico es obligatorio'),
   password: yup
     .string()
-    .min(6, 'La contraseña debe tener al menos 6 caracteres')
     .required('La contraseña es obligatoria'),
 });
 
@@ -30,9 +32,9 @@ const Login = () => {
   });
 
   const onSubmit = (data) => {
-    console.log('Formulario enviado:', data);
-    Navigation.navigate('HomeTab')
-  };
+      console.log('Formulario enviado:', data);
+      Navigation.navigate('HomeTab');
+    };
 
   //Fuentes Personalizadas
       const [fontsLoaded] = useFonts({
@@ -52,7 +54,7 @@ const Login = () => {
 <View style={styles.form}>
         <Text style={styles.titulo}>Iniciar Sesión</Text>
 
-
+        {/* Email */}
         <Controller
         name="email"
         control={control}
@@ -62,12 +64,12 @@ const Login = () => {
         />
 
 
-
+        {/* Password */}
         <Controller
         name="password"
         control={control}
         render={({ field }) => (
-          <TextInput style={styles.input} placeholder='Correo Electronico' value={field.value} onChangeText={field.onChange}/>
+          <TextInput style={styles.input} placeholder='Contraseña' secureTextEntry={true} value={field.value} onChangeText={field.onChange}/>
         )}
         />
 
@@ -86,6 +88,22 @@ const Login = () => {
         </View>
       </View>
 
+      
+      {errors.email && <View style={styles.msgContainer}>
+        <MaterialIcons name="cancel" size={24} color="red" />
+        <Text style={styles.msgText}>{errors.email.message}</Text>
+        </View>}
+      
+      {errors.password && <View style={styles.msgContainer}>
+        <MaterialIcons name="cancel" size={24} color="red" />
+        <Text style={styles.msgText}>{errors.password.message}</Text>
+        </View>}
+
+      
+
+      <View style={styles.marginBottom}></View>
+      
+      
       
     </View>
     </KeyboardAvoidingView>
@@ -171,5 +189,25 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textDecorationLine: 'underline',
     color: '#44634E'
+  },
+  marginBottom:{
+    marginBottom: 50
+  },
+  msgContainer:{
+    flexDirection: 'row',
+    width: 'auto',
+    height: 40,
+    marginTop: 10,
+    paddingHorizontal: 10,
+    borderRadius: 20,
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    backgroundColor: '#FFF9F9'
+  },
+  msgText:{
+    color: 'black',
+    fontFamily: 'MalgunGothic',
+    fontSize: 14,
+    marginLeft: 10
   }
 })

@@ -1,12 +1,75 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, ScrollView, KeyboardAvoidingView, Platform } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, ScrollView, KeyboardAvoidingView, Platform, Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { useFonts } from 'expo-font'
+import { useState } from 'react'
+
+//Icono
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+
+import DateTimePicker from '@react-native-community/datetimepicker'
+import { set } from 'react-hook-form'
+
+//Form
+import { useForm, Controller } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+// Esquema de validación con Yup
+const validationSchema = yup.object().shape({
+  email: yup
+    .string()
+    .email('Debe ser un correo electrónico válido')
+    .required('El correo electrónico es obligatorio'),
+  password: yup
+    .string()
+    .required('La contraseña es obligatoria'),
+  direccion: yup
+    .string()
+    .required('La direccion es obligatoria'),
+  ciudad: yup
+    .string()
+    .required('La ciudad es obligatoria'),
+  celular: yup.string()
+    .matches(
+      /^[0-9]{10}$/, 
+      'El número de teléfono debe tener 10 dígitos'
+    )
+    .required('El número de teléfono es obligatorio')
+});
 
 
 const Register = () => {
 
   const Navigation = useNavigation()
+
+  // Usando react-hook-form para manejar el formulario
+  const { control, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
+  
+  const onSubmit = (data) => {
+      console.log('Formulario enviado:', data);
+      Navigation.navigate('Login');
+  }
+
+  //Fecha y Picker useState
+  const [date, setDate] = useState(new Date());
+  const [showPicker, setShowPicker] = useState()
+  
+  //Metodo para mostrar el Date
+  const toggleDatePicker =()=>{
+    setShowPicker(!showPicker);
+  }
+
+  const onChange = ({type}, selectedDate) => {
+    if (type == 'set') {
+      const currentDate = selectedDate;
+      setDate(currentDate);
+    } else {
+      toggleDatePicker()
+    }
+  }
 
   //Fuentes Personalizadas
       const [fontsLoaded] = useFonts({
@@ -23,13 +86,65 @@ const Register = () => {
       
       <View style={styles.form}>
         <Text style={styles.titulo}>Registrate</Text>
-        <TextInput style={styles.input} placeholder='Correo Electronico'/>
-        <TextInput style={styles.input} placeholder='Contraseña'/>
-        <TextInput style={styles.input} placeholder='Direccion'/>
-        <TextInput style={styles.input} placeholder='Ciudad'/>
-        <TextInput style={styles.input} placeholder='Fecha De Nacimiento'/>
-        <TextInput style={styles.input} placeholder='Celular'/>
-        <TouchableOpacity style={styles.boton} onPress={() => Navigation.navigate('Login')}>
+
+        <Controller
+          name='email'
+          control={control} 
+          render={({ field }) => (
+                    <TextInput style={styles.input} placeholder='Correo Electronico' value={field.value} onChangeText={field.onChange}/>
+          )}
+        />
+
+        <Controller 
+          name='password'
+          control={control} 
+          render={({ field }) => (
+                    <TextInput style={styles.input} placeholder='Contraseña' value={field.value} onChangeText={field.onChange}/>
+          )}
+        />
+
+        <Controller 
+          name='direccion'
+          control={control} 
+          render={({ field }) => (
+                    <TextInput style={styles.input} placeholder='Direccion' value={field.value} onChangeText={field.onChange}/>
+          )}
+        />
+
+        <Controller
+          name='ciudad'
+          control={control} 
+          render={({ field }) => (
+                    <TextInput style={styles.input} placeholder='Ciudad' value={field.value} onChangeText={field.onChange}/>
+          )}
+        />
+
+        <Controller 
+          name='celular'
+          control={control} 
+          render={({ field }) => (
+                    <TextInput style={styles.input} placeholder='Celular' value={field.value} onChangeText={field.onChange} keyboardType='numeric'/>
+          )}
+        />
+          
+
+
+        
+
+        <Pressable style={styles.input} title='Fecha De Nacimiento' onPress={toggleDatePicker}/>
+        
+        {showPicker && (<DateTimePicker
+        mode='date'
+        display='spinner'
+        value={date}
+        onChange={onChange}/>)}
+
+        
+        
+        
+
+        
+        <TouchableOpacity style={styles.boton} onPress={handleSubmit(onSubmit)}>
           <Text style={styles.textoBtn}>
             Registrar
           </Text>
@@ -42,6 +157,35 @@ const Register = () => {
           </TouchableOpacity>
         </View>
       </View>
+
+      {errors.email && <View style={styles.msgContainer}>
+        <MaterialIcons name="cancel" size={24} color="red" />
+        <Text style={styles.msgText}>{errors.email.message}</Text>
+        </View>}
+      
+      {errors.password && <View style={styles.msgContainer}>
+        <MaterialIcons name="cancel" size={24} color="red" />
+        <Text style={styles.msgText}>{errors.password.message}</Text>
+        </View>}
+      
+      {errors.ciudad && <View style={styles.msgContainer}>
+        <MaterialIcons name="cancel" size={24} color="red" />
+        <Text style={styles.msgText}>{errors.ciudad.message}</Text>
+        </View>}
+      
+      {errors.direccion && <View style={styles.msgContainer}>
+        <MaterialIcons name="cancel" size={24} color="red" />
+        <Text style={styles.msgText}>{errors.direccion.message}</Text>
+        </View>}
+      
+      
+      {errors.celular && <View style={styles.msgContainer}>
+        <MaterialIcons name="cancel" size={24} color="red" />
+        <Text style={styles.msgText}>{errors.celular.message}</Text>
+        </View>}
+
+      <View style={styles.marginBottom}></View>
+
     </View>
     </ScrollView>
     </KeyboardAvoidingView>
@@ -130,5 +274,25 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textDecorationLine: 'underline',
     color: '#44634E'
+  },
+  marginBottom:{
+    marginBottom: 30
+  },
+  msgContainer:{
+    flexDirection: 'row',
+    width: 'auto',
+    height: 40,
+    marginTop: 10,
+    paddingHorizontal: 10,
+    borderRadius: 20,
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    backgroundColor: '#FFF9F9'
+  },
+  msgText:{
+    color: 'black',
+    fontFamily: 'MalgunGothic',
+    fontSize: 14,
+    marginLeft: 10
   }
 })

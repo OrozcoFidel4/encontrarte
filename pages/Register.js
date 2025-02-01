@@ -19,10 +19,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 const validationSchema = yup.object().shape({
   nombre: yup
     .string()
-    .required('El correo electrónico es obligatorio'),
+    .required('El nombre es obligatorio'),
   apellido: yup
     .string()
-    .required('El correo electrónico es obligatorio'),
+    .required('El apellido es obligatorio'),
   email: yup
     .string()
     .email('Debe ser un correo electrónico válido')
@@ -180,6 +180,16 @@ const Register = () => {
           </TouchableOpacity>
         </View>
       </View>
+
+      {errors.nombre && <View style={styles.msgContainer}>
+        <MaterialIcons name="cancel" size={24} color="red" />
+        <Text style={styles.msgText}>{errors.nombre.message}</Text>
+        </View>}
+
+      {errors.apellido && <View style={styles.msgContainer}>
+        <MaterialIcons name="cancel" size={24} color="red" />
+        <Text style={styles.msgText}>{errors.apellido.message}</Text>
+        </View>}
 
       {errors.email && <View style={styles.msgContainer}>
         <MaterialIcons name="cancel" size={24} color="red" />

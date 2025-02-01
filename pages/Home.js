@@ -42,9 +42,10 @@ const Home = () => {
 
                     <Text style={styles.tituloCategorias}>Busca en nuestras categorias</Text>
                     
-                    <CategoryContainer titulo='Nombre Categoria' descripcion='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper ac diam quis cursus. Vestibulum mauris enim, scelerisque ac.' imageSource={require('../assets/images.jpg')}/>
-                    <CategoryContainer titulo='Nombre Categoria' descripcion='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper ac diam quis cursus. Vestibulum mauris enim, scelerisque ac.' imageSource={require('../assets/images.jpg')}/>
-                    <CategoryContainer titulo='Nombre Categoria' descripcion='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper ac diam quis cursus. Vestibulum mauris enim, scelerisque ac.' imageSource={require('../assets/images.jpg')}/>
+                    <CategoryContainer titulo='Abstracto' descripcion='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper ac diam quis cursus. Vestibulum mauris enim, scelerisque ac.' imageSource={require('../assets/categoria.jpg')}/>
+                    <CategoryContainer titulo='Cubismo' descripcion='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper ac diam quis cursus. Vestibulum mauris enim, scelerisque ac.' imageSource={require('../assets/categoria1.jpg')}/>
+                    <CategoryContainer titulo='Escultura' descripcion='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper ac diam quis cursus. Vestibulum mauris enim, scelerisque ac.' imageSource={require('../assets/categoria2.jpg')}/>
+                    <CategoryContainer titulo='Artesanias' descripcion='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper ac diam quis cursus. Vestibulum mauris enim, scelerisque ac.' imageSource={require('../assets/categoria3.jpg')}/>
                 
                 </View>
             </ScrollView>

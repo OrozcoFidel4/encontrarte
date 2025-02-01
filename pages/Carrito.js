@@ -22,15 +22,13 @@ const Carrito = () => {
             <ScrollView>
                 <View style={styles.containerPadding}>
                     <Text style={styles.titulo}>Carrito</Text>
-                    <CartProduct nombre="Nombre Creador" precio={1000} imageSource={require('../assets/images.jpg')}/>
-                    <CartProduct nombre="Nombre Creador" precio={1000} imageSource={require('../assets/images.jpg')}/>
-                    <CartProduct nombre="Nombre Creador" precio={10} imageSource={require('../assets/images.jpg')}/>
-                    <CartProduct nombre="Nombre Creador" precio={120} imageSource={require('../assets/images.jpg')}/>
-                    <CartProduct nombre="Nombre Creador" precio={1000} imageSource={require('../assets/images.jpg')}/>
-                    <CartProduct nombre="Nombre Creador" precio={500} imageSource={require('../assets/images.jpg')}/>
-                    <CartProduct nombre="Nombre Creador" precio={1000} imageSource={require('../assets/images.jpg')}/>
-                    <CartProduct nombre="Nombre Creador" precio={1200} imageSource={require('../assets/images.jpg')}/>
-                    <CartProduct nombre="Nombre Creador" precio={1000} imageSource={require('../assets/images.jpg')}/>
+                    <CartProduct nombre="Nombre Producto" precio={1000} imageSource={require('../assets/producto.jpg')}/>
+                    <CartProduct nombre="Nombre Producto" precio={1000} imageSource={require('../assets/producto3.jpg')}/>
+                    <CartProduct nombre="Nombre Producto" precio={10} imageSource={require('../assets/producto4.jpg')}/>
+                    <CartProduct nombre="Nombre Producto" precio={120} imageSource={require('../assets/producto5.jpg')}/>
+                    <CartProduct nombre="Nombre Producto" precio={1000} imageSource={require('../assets/images.jpg')}/>
+                    <CartProduct nombre="Nombre Producto" precio={500} imageSource={require('../assets/producto2.jpeg')}/>
+                    
 
                     <View style={styles.totalContainer}>
 

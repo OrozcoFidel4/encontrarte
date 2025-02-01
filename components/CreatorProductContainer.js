@@ -1,14 +1,14 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import { useFonts } from 'expo-font'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native';
 
-const CategoryContainer = ({titulo, descripcion, imageSource}) => {
+const CreatorProductContainer = ({nombre, precio, imageSource}) => {
 
     const Navigation = useNavigation()
 
     const handlePress = () => {
-        Navigation.navigate('ListaProducto')
+        Navigation.navigate('Producto')
     }
 
     //Fuentes Personalizadas
@@ -19,32 +19,34 @@ const CategoryContainer = ({titulo, descripcion, imageSource}) => {
         });
 
     return (
-        <TouchableOpacity style={styles.container} onPress={handlePress}>
+        <TouchableOpacity style={styles.containerPrincipal} onPress={handlePress}>
 
-            {imageSource && (<Image source={imageSource} style={styles.image}/>)}
+            <View style={styles.containerSecundario}>
+                {imageSource && (<Image source={imageSource} style={styles.image}/>)}
+
+                <View>
+                    <Text style={styles.titulo}>{nombre}</Text>
+                    <Text style={styles.precio}>${precio} MXN</Text>
+                </View>
+            </View>
+
+            
             
 
-
-            <View>
-                <Text style={styles.titulo}>{titulo}</Text>
-                <View style={styles.descripcionContainer}>
-                    <Text style={styles.descripcion}>{descripcion}</Text>
-                </View>
-                
-            </View>
         </TouchableOpacity>
     )
 }
 
-export default CategoryContainer
+export default CreatorProductContainer
 
 const styles = StyleSheet.create({
 
-    container: {
+    containerPrincipal: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between',
         width: '90%',
-        height: 180,
+        height: 100,
         padding: 20,
         backgroundColor: '#FFF9F9',
         borderRadius: 20,
@@ -55,29 +57,35 @@ const styles = StyleSheet.create({
         margin: 10,
         
     },
+    containerSecundario:{
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
     image:{
-        width: 80,
-        height: 80,
+        width: 70,
+        height: 70,
         borderRadius: 100
     },
     titulo:{
         fontSize: 20,
         fontFamily: 'MadeTommyBold',
         marginLeft: 20,
-        marginBottom:5,
         color: '#1A1A1A'
-        
     },
-    descripcionContainer:{
-        width: '80%',
-        marginLeft: 10
+    precio:{
+        fontSize: 20,
+        fontFamily: 'MadeTommyBold',
+        marginLeft: 20,
+        color: '#44634E'
     },
-    descripcion:{
-        fontSize: 12,
-        fontFamily: 'MalgunGothic',
-        marginLeft: 10,
-        textAlign: 'justify',
-        color: '#634455'
-    },
+    eliminarBtn:{
+        width: 50,
+        height: 50,
+        borderRadius: 10,
+        backgroundColor: '#E3298F',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
+    
 
 })

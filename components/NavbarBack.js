@@ -5,15 +5,20 @@ import { useNavigation } from '@react-navigation/native';
 
 //Iconos
 import AntDesign from '@expo/vector-icons/AntDesign';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 
-const Navbar = () => {
+const NavbarBack = () => {
 
 
     const Navigation = useNavigation()
 
     return (
         <View style={styles.navbar}>
+            <TouchableOpacity onPress={() => Navigation.goBack()}>
+                <Ionicons name="arrow-back-outline" size={30} color="#fffff3" />
+            </TouchableOpacity>
+            
             <Text style={styles.logo}>
                 EncontrArte
             </Text>
@@ -25,7 +30,7 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default NavbarBack
 
 const styles = StyleSheet.create({
     navbar: {

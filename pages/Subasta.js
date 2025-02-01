@@ -7,7 +7,7 @@ import NavbarBack from '../components/NavbarBack'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
-const Producto = () => {
+const Subasta = () => {
     return (
         <View style={{backgroundColor: '#FFFFF3'}}>
             <NavbarBack/>
@@ -42,7 +42,7 @@ const Producto = () => {
     )
 }
 
-export default Producto
+export default Subasta
 
 const styles = StyleSheet.create({
     nombre: {

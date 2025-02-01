@@ -59,7 +59,7 @@ const Login = () => {
         name="email"
         control={control}
         render={({ field }) => (
-          <TextInput style={styles.input} placeholder='Correo Electronico' value={field.value} onChangeText={field.onChange}/>
+          <TextInput style={styles.input} placeholder='Correo Electronico' keyboardType='email-address' value={field.value} onChangeText={field.onChange}/>
         )}
         />
 

@@ -1,7 +1,6 @@
 import React from 'react'
 import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 
 
 //Iconos
@@ -11,6 +10,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 
 
 const Navbar = () => {
+
 
     const Navigation = useNavigation()
 
@@ -46,6 +46,8 @@ const styles = StyleSheet.create({
         padding: 20,
         paddingHorizontal: 20,
         borderRadius: 40,
-        backgroundColor: '#fffff3'}
+        backgroundColor: '#fffff3',
+        color: "#634455" 
+    }
 })
 

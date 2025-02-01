@@ -130,7 +130,7 @@ function MyStack() {
                 name="Producto"
                 component={Producto}
                 options={{
-                    headerShown: true
+                    headerShown: false
                     
                 }}
             />

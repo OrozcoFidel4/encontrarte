@@ -17,6 +17,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 // Esquema de validación con Yup
 const validationSchema = yup.object().shape({
+  nombre: yup
+    .string()
+    .required('El correo electrónico es obligatorio'),
+  apellido: yup
+    .string()
+    .required('El correo electrónico es obligatorio'),
   email: yup
     .string()
     .email('Debe ser un correo electrónico válido')
@@ -91,7 +97,24 @@ const Register = () => {
           name='email'
           control={control} 
           render={({ field }) => (
-                    <TextInput style={styles.input} placeholder='Correo Electronico' value={field.value} onChangeText={field.onChange}/>
+                    <TextInput style={styles.input} placeholder='Nombre(s)' keyboardType='email-address' value={field.value} onChangeText={field.onChange}/>
+          )}
+        />
+
+        <Controller
+          name='Apellidos'
+          control={control} 
+          render={({ field }) => (
+                    <TextInput style={styles.input} placeholder='Apellido(s)' value={field.value} onChangeText={field.onChange}/>
+          )}
+        />
+
+
+        <Controller
+          name='email'
+          control={control} 
+          render={({ field }) => (
+                    <TextInput style={styles.input} placeholder='Correo Electronico' keyboardType='email-address' value={field.value} onChangeText={field.onChange}/>
           )}
         />
 
@@ -123,7 +146,7 @@ const Register = () => {
           name='celular'
           control={control} 
           render={({ field }) => (
-                    <TextInput style={styles.input} placeholder='Celular' value={field.value} onChangeText={field.onChange} keyboardType='numeric'/>
+                    <TextInput style={styles.input} placeholder='Celular' value={field.value} onChangeText={field.onChange} keyboardType='phone-pad'/>
           )}
         />
           

@@ -7,4 +7,6 @@ npm install react-native-gesture-handler
 
 VALIDATION----
 npm install react-hook-form yup @hookform/resolvers
+
+PICKER----
 npx expo install @react-native-community/datetimepicker

@@ -32,7 +32,7 @@ const Login = () => {
   });
 
   const onSubmit = (data) => {
-      console.log('Formulario enviado:', data);
+      console.log(data.email);
       Navigation.navigate('HomeTab');
     };
 

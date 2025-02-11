@@ -55,7 +55,7 @@ const Register = () => {
   });
   
   const onSubmit = (data) => {
-      console.log('Formulario enviado:', data);
+      console.log('Formulario enviado:', typeof(data.nombre));
       Navigation.navigate('Login');
   }
 
@@ -94,7 +94,7 @@ const Register = () => {
         <Text style={styles.titulo}>Registrate</Text>
 
         <Controller
-          name='email'
+          name='nombre'
           control={control} 
           render={({ field }) => (
                     <TextInput style={styles.input} placeholder='Nombre(s)' keyboardType='email-address' value={field.value} onChangeText={field.onChange}/>
@@ -102,7 +102,7 @@ const Register = () => {
         />
 
         <Controller
-          name='Apellidos'
+          name='apellido'
           control={control} 
           render={({ field }) => (
                     <TextInput style={styles.input} placeholder='Apellido(s)' value={field.value} onChangeText={field.onChange}/>
